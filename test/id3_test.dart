@@ -12,7 +12,10 @@ void main() async {
         tag = tagger.readTagSync()!;
       });
       test('duration', () {
-        expect(tag.duration?.inMilliseconds, inInclusiveRange(file.durationLower, file.durationUpper));
+        expect(
+          tag.duration?.inMilliseconds,
+          inInclusiveRange(file.durationLower, file.durationUpper),
+        );
       });
       test('title', () {
         expect(tag.title, file.title);
