@@ -4,27 +4,33 @@ import 'test.dart';
 void main() async {
   late Tagger tagger;
   late Tag tag;
-  final file = TestFiles.v23;
 
-  setUp(() {
-    tagger = Tagger(file.path);
-    tag = tagger.readTagSync()!;
-  });
-  test('title', () {
-    expect(tag.title, file.title);
-  });
-  test('artist', () {
-    expect(tag.artist, file.artist);
-  });
-  test('album', () {
-    expect(tag.album, file.album);
-  });
-  test('picture', () {
-    expect(tag.pictures.length, 1);
-    final picture = tag.pictures.first;
-    expect(picture.mimeType, file.picture.mimeType);
-    expect(picture.description, file.picture.description);
-    expect(picture.data, file.picture.data);
-    expect(picture.pictureType, file.picture.pictureType);
-  });
+  for (final file in TestFiles.all) {
+    group('ID3v${file.version}', () {
+      setUp(() {
+        tagger = Tagger(file.path);
+        tag = tagger.readTagSync()!;
+      });
+      test('title', () {
+        expect(tag.title, file.title);
+      });
+      test('artist', () {
+        expect(tag.artist, file.artist);
+      });
+      test('album', () {
+        expect(tag.album, file.album);
+      });
+
+      if (file.version.startsWith('2')) {
+        test('picture', () {
+          expect(tag.pictures.length, 1);
+          final picture = tag.pictures.first;
+          expect(picture.mimeType, file.picture.mimeType);
+          expect(picture.description, file.picture.description);
+          expect(picture.data, file.picture.data);
+          expect(picture.pictureType, file.picture.pictureType);
+        });
+      }
+    });
+  }
 }

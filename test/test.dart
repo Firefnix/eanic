@@ -34,8 +34,9 @@ class TestFile {
 }
 
 abstract class TestFiles {
-  static const v10 = TestFile(version: '1.0');
-  static const v11 = TestFile(version: '1.1');
-  static const v23 = TestFile(version: '2.3');
-  static const v24 = TestFile(version: '2.4');
+  static const v10 = TestFile(version: '1.0'),
+      v11 = TestFile(version: '1.1'),
+      v23 = TestFile(version: '2.3'),
+      v24 = TestFile(version: '2.4'),
+      all = [v10, v23];
 }

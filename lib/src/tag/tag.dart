@@ -77,6 +77,22 @@ class Tag {
   })  : other = other ?? <String, String>{},
         pictures = pictures ?? <Picture>[];
 
+  Tag merge(Tag other) => Tag(
+        version: version ?? other.version,
+        title: title ?? other.title,
+        artist: artist ?? other.artist,
+        genre: genre ?? other.genre,
+        trackNumber: trackNumber ?? other.trackNumber,
+        trackTotal: trackTotal ?? other.trackTotal,
+        discNumber: discNumber ?? other.discNumber,
+        discTotal: discTotal ?? other.discTotal,
+        lyrics: lyrics ?? other.lyrics,
+        comment: comment ?? other.comment,
+        album: album ?? other.album,
+        albumArtist: albumArtist ?? other.albumArtist,
+        year: year ?? other.year,
+      );
+
   /// Create a [Tag] from a [Map] of the tags.
   Tag.fromMap(Map<String, dynamic> map)
       : version = map['version'],

@@ -2,6 +2,7 @@ import 'package:eanic/src/frames.dart';
 import 'package:eanic/src/tag.dart';
 import 'package:eanic/src/exceptions.dart';
 
+import 'parser_v10.dart';
 import 'parser_v23.dart';
 
 /// A [Parser] is a tool to provide a [Tag] out of bytes. It is mainly intended
@@ -12,7 +13,7 @@ abstract class Parser {
     final version = Version(bytes);
     switch (version.type) {
       case 1:
-        throw UnsupportedVersionException(version.toString());
+        return ParserV10(bytes);
       case 2:
         return ParserV2.auto(bytes);
       default:
