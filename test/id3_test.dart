@@ -20,6 +20,14 @@ void main() async {
       test('album', () {
         expect(tag.album, file.album);
       });
+      test('genre', () {
+        expect(tag.genre, file.genre);
+      });
+      if (file.version != '1.0') {
+        test('trackNumber', () {
+          expect(tag.trackNumber, file.trackNumber);
+        });
+      }
 
       if (file.version.startsWith('2')) {
         test('picture', () {

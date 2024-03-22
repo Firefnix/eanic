@@ -42,5 +42,5 @@ abstract class TestFiles {
       v11 = TestFile(version: '1.1'),
       v23 = TestFile(version: '2.3'),
       v24 = TestFile(version: '2.4'),
-      all = [v10, v23];
+      all = [v10, v11, v23];
 }
