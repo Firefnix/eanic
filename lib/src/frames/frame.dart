@@ -42,11 +42,11 @@ class Frame with Encodings {
   static int _getSize(List<int> sizeBlock) {
     assert(sizeBlock.length == 4);
 
-    const BASE = 8; // should be 7 (see v2.3 doc)
+    const base = 8; // should be 7 (see v2.3 doc)
 
-    var len = sizeBlock[0] << BASE * 3;
-    len += sizeBlock[1] << BASE * 2;
-    len += sizeBlock[2] << BASE;
+    var len = sizeBlock[0] << base * 3;
+    len += sizeBlock[1] << base * 2;
+    len += sizeBlock[2] << base;
     len += sizeBlock[3];
 
     return len;
@@ -95,7 +95,7 @@ class ApicFrame extends Frame {
 
   late final _pictureTypeBlock = Block.byte(content, start: _mimeBlock.end);
 
-  PictureType? get pictureType {
+  ArtworkType? get pictureType {
     if (_pictureTypeBlock.value < pictureTypes.count) {
       return pictureTypes[_pictureTypeBlock.value];
     }

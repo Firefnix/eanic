@@ -28,7 +28,7 @@ class TestFile {
   static final _defaultArtwork = Artwork(
     description: 'Description',
     mimeType: 'image/png',
-    pictureType: PictureType.frontCover,
+    pictureType: ArtworkType.frontCover,
     data: File('test/files/artwork.png').readAsBytesSync(),
   );
 }

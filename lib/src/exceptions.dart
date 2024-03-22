@@ -1,3 +1,10 @@
+import 'dart:io';
+
+/// An error raised while parsing an ID3 tag.
+///
+/// All the errors that can occur when parsing a ID3 tag are [Id3Exception]s or
+/// [FileSystemException]s (e.g. if the tagger cannot read the content of the
+/// file we gave it).
 class Id3Exception implements Exception {
   Id3Exception([this.message]);
 
