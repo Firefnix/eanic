@@ -34,4 +34,3 @@ class Artwork {
   /// The actual byte data of the file.
   final Uint8List data;
 }
-

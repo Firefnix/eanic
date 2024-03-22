@@ -41,8 +41,7 @@ List<int> codepointsToUtf16CodeUnits(List<int> codepoints,
     if ((value! >= 0 && value < unicodeUtf16ReservedLo) ||
         (value > unicodeUtf16ReservedHi && value <= unicodePlaneOneMax)) {
       encodedLength++;
-    } else if (value > unicodePlaneOneMax &&
-        value <= unicodeValidRangeMax) {
+    } else if (value > unicodePlaneOneMax && value <= unicodeValidRangeMax) {
       encodedLength += 2;
     } else {
       encodedLength++;
@@ -55,11 +54,10 @@ List<int> codepointsToUtf16CodeUnits(List<int> codepoints,
     if ((value! >= 0 && value < unicodeUtf16ReservedLo) ||
         (value > unicodeUtf16ReservedHi && value <= unicodePlaneOneMax)) {
       codeUnitsBuffer[j++] = value;
-    } else if (value > unicodePlaneOneMax &&
-        value <= unicodeValidRangeMax) {
+    } else if (value > unicodePlaneOneMax && value <= unicodeValidRangeMax) {
       var base = value - unicodeUtf16Offset;
-      codeUnitsBuffer[j++] = unicodeUtf16SurrogateUnit0Base +
-          ((base & unicodeUtf16HiMask) >> 10);
+      codeUnitsBuffer[j++] =
+          unicodeUtf16SurrogateUnit0Base + ((base & unicodeUtf16HiMask) >> 10);
       codeUnitsBuffer[j++] =
           unicodeUtf16SurrogateUnit1Base + (base & unicodeUtf16LoMask);
     } else {
