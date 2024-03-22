@@ -44,12 +44,10 @@ class Frame with Encodings {
 
     const base = 8; // should be 7 (see v2.3 doc)
 
-    var len = sizeBlock[0] << base * 3;
-    len += sizeBlock[1] << base * 2;
-    len += sizeBlock[2] << base;
-    len += sizeBlock[3];
-
-    return len;
+    return (sizeBlock[0] << base * 3) +
+        (sizeBlock[1] << base * 2) +
+        (sizeBlock[2] << base) +
+        sizeBlock[3];
   }
 }
 

@@ -38,7 +38,7 @@ class Version {
 
   bool get hasTagV1 {
     final v1Tag = bytes.sublist(bytes.length - 128).sublist(0, 3);
-    return latin1.decode(v1Tag).toLowerCase() == 'tag';
+    return latin1.decode(v1Tag) == 'TAG';
   }
 
   @override
