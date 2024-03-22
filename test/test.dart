@@ -11,6 +11,8 @@ class TestFile {
       this.title = 'Test title',
       this.album = 'Test album',
       this.artist = 'Test artist',
+      this.genre = '(4)Disco',
+      this.trackNumber = 3,
       Picture? picture,
       required this.version})
       : path = 'test/files/${name ?? version}.mp3',
@@ -20,6 +22,8 @@ class TestFile {
   final String title;
   final String artist;
   final String album;
+  final String genre;
+  final int trackNumber;
   final String version;
 
   Picture get picture => _picture ?? _defaultPicture;

@@ -27,6 +27,15 @@ class ParserV23 implements ParserV2 {
           case 'TALB':
             tag.album = i.value;
             break;
+          case 'TCON':
+            tag.genre = i.value;
+            break;
+          case 'TRCK':
+            final parts = i.value.split('/');
+            assert(parts.length <= 2);
+            tag.trackNumber = int.parse(parts.first);
+            if (parts.length == 2) tag.trackTotal = int.parse(parts.last);
+            break;
           default:
             tag.other[FrameNames.v23[i.id] ?? i.id] = i.value;
         }

@@ -11,34 +11,32 @@ import 'package:eanic/src/exceptions.dart';
 class Version {
   factory Version(List<int> bytes) {
     final base = Version.base(bytes);
-    if (base._isV1) {
-      return Version1(bytes);
-    } else if (base._isV2) {
+    if (base.hasTagV2) {
       return Version2(bytes);
+    } else if (base.hasTagV1) {
+      return Version1(bytes);
     }
     throw UnknownVersionException();
   }
 
   Version.base(this.bytes) {
-    if (!canParse()) throw UnknownVersionException();
+    if (!hasTag) throw UnknownVersionException();
   }
 
   final List<int> bytes;
 
   /// Either `1` (for ID3v1.x) or `2` (for ID3v2.x);
-  int get type => _isV2 ? 2 : 1;
+  int get type => hasTagV2 ? 2 : 1;
 
   int? get major => null;
 
   int? get minor => null;
 
-  final Encoding encoding = latin1;
+  bool get hasTag => hasTagV2 || hasTagV1;
 
-  bool canParse() => _isV2 || _isV1;
+  bool get hasTagV2 => latin1.decode(bytes.sublist(0, 3)) == 'ID3';
 
-  bool get _isV2 => latin1.decode(bytes.sublist(0, 3)) == 'ID3';
-
-  bool get _isV1 {
+  bool get hasTagV1 {
     final v1Tag = bytes.sublist(bytes.length - 128).sublist(0, 3);
     return latin1.decode(v1Tag).toLowerCase() == 'tag';
   }
@@ -51,9 +49,6 @@ class Version2 extends Version {
   Version2(List<int> bytes) : super.base(bytes) {
     assert(type == 2);
   }
-
-  @override
-  Encoding get encoding => throw UnimplementedError();
 
   @override
   late final int major = bytes[3];

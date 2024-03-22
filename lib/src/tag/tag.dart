@@ -16,14 +16,17 @@ class Tag {
   /// Artist of the track
   String? artist;
 
-  /// Genre of the track
+  /// The genre of the track.
+  ///
+  /// It is usually capitalized, but this library doesn't reformat it: you get
+  /// it as it is in the tag.
   String? genre;
 
   /// Number of the track in the album
-  String? trackNumber;
+  int? trackNumber;
 
   /// Total number of tracks in the album
-  String? trackTotal;
+  int? trackTotal;
 
   /// Number of the disc in the artist discography
   String? discNumber;
