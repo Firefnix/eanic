@@ -11,10 +11,10 @@ class TestFile {
       this.title = 'Test title',
       this.album = 'Test album',
       this.artist = 'Test artist',
-      Artwork? artwork,
+      Picture? picture,
       required this.version})
       : path = 'test/files/${name ?? version}.mp3',
-        _artwork = artwork;
+        _picture = picture;
 
   final String path;
   final String title;
@@ -22,14 +22,14 @@ class TestFile {
   final String album;
   final String version;
 
-  Artwork get artwork => _artwork ?? _defaultArtwork;
-  final Artwork? _artwork;
+  Picture get picture => _picture ?? _defaultPicture;
+  final Picture? _picture;
 
-  static final _defaultArtwork = Artwork(
+  static final _defaultPicture = Picture(
     description: 'Description',
     mimeType: 'image/png',
-    pictureType: ArtworkType.frontCover,
-    data: File('test/files/artwork.png').readAsBytesSync(),
+    pictureType: PictureType.frontCover,
+    data: File('test/files/picture.png').readAsBytesSync(),
   );
 }
 

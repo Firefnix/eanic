@@ -31,7 +31,7 @@ class ParserV23 implements ParserV2 {
             tag.other[FrameNames.v23[i.id] ?? i.id] = i.value;
         }
       } else if (i is ApicFrame) {
-        tag.artwork = artworkFromFrame(i);
+        tag.pictures.add(pictureFromFrame(i));
       }
     }
     return tag;

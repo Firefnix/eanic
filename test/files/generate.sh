@@ -24,5 +24,5 @@ for i in 1.1 2.3 2.4; do
 done
 
 for i in 2.3 2.4; do
-  eyeD3 --add-image "artwork.png:FRONT_COVER:Description" "$i.mp3"
+  eyeD3 --add-image "picture.png:FRONT_COVER:Description" "$i.mp3"
 done

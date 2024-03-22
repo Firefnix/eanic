@@ -95,7 +95,7 @@ class ApicFrame extends Frame {
 
   late final _pictureTypeBlock = Block.byte(content, start: _mimeBlock.end);
 
-  ArtworkType? get pictureType {
+  PictureType? get pictureType {
     if (_pictureTypeBlock.value < pictureTypes.count) {
       return pictureTypes[_pictureTypeBlock.value];
     }

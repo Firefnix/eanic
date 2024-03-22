@@ -19,11 +19,12 @@ void main() async {
   test('album', () {
     expect(tag.album, file.album);
   });
-  test('artwork', () {
-    expect(tag.artwork, isA<Artwork>());
-    expect(tag.artwork!.mimeType, file.artwork.mimeType);
-    expect(tag.artwork!.description, file.artwork.description);
-    expect(tag.artwork!.data, file.artwork.data);
-    expect(tag.artwork!.pictureType, file.artwork.pictureType);
+  test('picture', () {
+    expect(tag.pictures.length, 1);
+    final picture = tag.pictures.first;
+    expect(picture.mimeType, file.picture.mimeType);
+    expect(picture.description, file.picture.description);
+    expect(picture.data, file.picture.data);
+    expect(picture.pictureType, file.picture.pictureType);
   });
 }
