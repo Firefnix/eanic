@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:eanic/src/constants.dart';
+import 'package:eanic/src/duration/duration.dart';
 import 'package:eanic/src/frames.dart';
 import 'package:eanic/src/tag/tag.dart';
 
@@ -22,7 +23,10 @@ class ParserV10 implements Parser {
 
   @override
   Tag getTag() {
-    final tag = Tag(version: version.toString());
+    final tag = Tag(
+      version: version.toString(),
+      duration: DurationParser(bytes).getDuration(),
+    );
     final tagBytes = bytes.sublist(bytes.length - 128);
 
     final header = Block.length(tagBytes, start: 0, length: 3);

@@ -1,4 +1,5 @@
 import 'package:eanic/src/constants.dart';
+import 'package:eanic/src/duration/duration.dart';
 import 'package:eanic/src/tag.dart';
 import 'package:eanic/src/frames.dart';
 
@@ -13,8 +14,7 @@ class ParserV23 implements ParserV2 {
 
   @override
   Tag getTag() {
-    final tag = Tag();
-    tag.version = Version(bytes).toString();
+    final tag = Tag(version: Version(bytes).toString());
     for (final i in getFrames()) {
       if (i is TextFrame) {
         switch (i.id) {
@@ -36,6 +36,9 @@ class ParserV23 implements ParserV2 {
             tag.trackNumber = int.parse(parts.first);
             if (parts.length == 2) tag.trackTotal = int.parse(parts.last);
             break;
+          case 'TLEN':
+            tag.duration = Duration(milliseconds: int.parse(i.value));
+            break;
           default:
             tag.other[FrameNames.v23[i.id] ?? i.id] = i.value;
         }
@@ -43,6 +46,7 @@ class ParserV23 implements ParserV2 {
         tag.pictures.add(pictureFromFrame(i));
       }
     }
+    tag.duration ??= DurationParser(bytes).getDuration();
     return tag;
   }
 

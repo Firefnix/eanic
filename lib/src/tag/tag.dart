@@ -10,6 +10,9 @@ class Tag {
   /// Version if ID3 used
   String? version;
 
+  /// The duration of the song.
+  Duration? duration;
+
   /// Title of the track
   String? title;
 
@@ -63,6 +66,7 @@ class Tag {
   /// Default constructor
   Tag({
     this.version,
+    this.duration,
     this.title,
     this.artist,
     this.genre,
@@ -82,6 +86,7 @@ class Tag {
 
   Tag merge(Tag other) => Tag(
         version: version ?? other.version,
+        duration: duration ?? other.duration,
         title: title ?? other.title,
         artist: artist ?? other.artist,
         genre: genre ?? other.genre,
@@ -99,6 +104,7 @@ class Tag {
   /// Create a [Tag] from a [Map] of the tags.
   Tag.fromMap(Map<String, dynamic> map)
       : version = map['version'],
+        duration = map['duration'],
         title = map['title'],
         artist = map['artist'],
         genre = map['genre'],
